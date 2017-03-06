@@ -78,3 +78,59 @@ constructor(props) {
     super(props);
     console.log(this.props) //props will get logged.
 }
+
+**************************/
+
+/***************************
+
+**Mounting
+  These methods are called when an instance of a component is being created and inserted into the DOM:
+    constructor()
+    componentWillMount()
+    render()
+    componentDidMount()
+
+**Updating
+  An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
+    componentWillReceiveProps()
+    shouldComponentUpdate()
+    componentWillUpdate()
+    render()
+    componentDidUpdate()
+
+    render() will not be invoked if shouldComponentUpdate() returns false.
+
+**Unmounting
+  This method is called when a component is being removed from the DOM:
+    componentWillUnmount()
+
+****************************/
+
+/****************************
+The constructor for a React component is called before it is mounted.
+When implementing the constructor for a React.Component subclass, you should call super(props) before any other
+statement. Otherwise, this.props will be undefined in the constructor, which can lead to bugs.
+
+The constructor is the right place to initialize state. If you don't initialize state and you don't bind methods,
+you don't need to implement a constructor for your React component.
+
+*****************************/
+
+/****************************
+
+setState(nextState, callback)
+Performs a shallow merge of nextState into current state. This is the primary method you use to trigger UI updates from event handlers and server request callbacks.
+
+The first argument can be an object (containing zero or more keys to update) or a function (of state and props) that returns an object containing keys to update.
+
+Here is the simple object usage:
+
+this.setState({mykey: 'my new value'});
+It's also possible to pass a function with the signature function(state, props) => newState. This enqueues an atomic update that consults the previous value of state and props before setting any values. For instance, suppose we wanted to increment a value in state by props.step:
+
+this.setState((prevState, props) => {
+  return {myInteger: prevState.myInteger + props.step};
+});
+The second parameter is an optional callback function that will be executed once setState is completed and the component is re-rendered. Generally we recommend using componentDidUpdate() for such logic instead.
+
+****************************/
