@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   //context: __dirname + "/app",
   entry: {
-        javascript: "./app/js/app.js"
+        javascript: "./app/js/containers/home.js"
   },
   output: {
     filename: "dist/bundle.js",
@@ -18,6 +18,11 @@ module.exports = {
         loaders: ["babel-loader"]
       }
     ]
+  },
+  devServer: {
+    inline: true,
+    contentBase: './dist',
+    port: 7007
   },
   plugins: [
     new HtmlWebpackPlugin({

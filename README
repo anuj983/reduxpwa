@@ -1,4 +1,7 @@
 /**************************
+
+https://stanko.github.io/setting-up-webpack-babel-and-react-from-scratch/
+
 1. npm init
 2. mkdir app/js -p & mkdir dist
 3. npm install webpack webpack-dev-server -g --save-dev
@@ -6,7 +9,72 @@
 5. npm i babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
 6. create .babelrc file
 
+webpack - compiles code using webpack.config.js file
+webpack-dev-server - runs server for rendering of files to clientend. (if you change code - it automatically recompiles
+code and renders it on frontend).
 
 Create one index.html file and one app.js file to get them loaded on frontend
 
 **************************/
+
+/*************************/
+
+node install package_name --save-dev (downloads package and put it in node_modules folder so that require package in
+code can be resolved from here. You can run binary file of package using node node_modules/package_name/bin/packange_name)
+
+export default component_name helps in importing by simple import abc from component_file_name
+
+To export a single component in ES6, you can use export default as follows:
+
+class MyClass extends Component {
+ ...
+}
+
+export default MyClass;
+
+And now you use the following syntax to import that module:
+import MyClass from './MyClass.react'
+
+If you are looking to export multiple components from a single file the declaration would look something like this:
+
+export class MyClass1 extends Component {
+ ...
+}
+
+export class MyClass2 extends Component {
+ ...
+}
+And now you can use the following syntax to import those files:
+import {MyClass1, MyClass2} from './MyClass.react'
+
+************************/
+
+/************************
+
+All React components must act like pure functions with respect to their props.
+Functions which do not attempt to change their inputs, and always return the same result for the same inputs are called
+pure functions.
+
+Elements are the smallest building blocks of React apps.
+
+An element describes what you want to see on the screen:
+
+const element = <h1>Hello, world</h1>;
+Unlike browser DOM elements, React elements are plain objects, and are cheap to create.
+React DOM takes care of updating the DOM to match the React elements.
+
+React elements are immutable. Once you create an element, you can't change its children or attributes.
+An element is like a single frame in a movie: it represents the UI at a certain point in time.
+With our knowledge so far, the only way to update the UI is to create a new element, and pass it to ReactDOM.render().
+
+When you pass props to super, the this the props get assigned to this. Take a look at the following scenario:
+constructor(props) {
+    super();
+    console.log(this.props) //undefined
+}
+
+How ever when you do :
+constructor(props) {
+    super(props);
+    console.log(this.props) //props will get logged.
+}
