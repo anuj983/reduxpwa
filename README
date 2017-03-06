@@ -1,0 +1,12 @@
+/**************************
+1. npm init
+2. mkdir app/js -p & mkdir dist
+3. npm install webpack webpack-dev-server -g --save-dev
+4. https://www.npmjs.com/package/html-webpack-plugin
+5. npm i babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
+6. create .babelrc file
+
+
+Create one index.html file and one app.js file to get them loaded on frontend
+
+**************************/
