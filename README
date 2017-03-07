@@ -9,11 +9,17 @@ https://stanko.github.io/setting-up-webpack-babel-and-react-from-scratch/
 5. npm i babel-core babel-loader babel-preset-es2015 babel-preset-react --save-dev
 6. create .babelrc file
 
+
 webpack - compiles code using webpack.config.js file
 webpack-dev-server - runs server for rendering of files to clientend. (if you change code - it automatically recompiles
 code and renders it on frontend).
 
 Create one index.html file and one app.js file to get them loaded on frontend
+
+npm cache clean
+webpack-dev-server --hot --inline --history-api-fallback
+
+http://stackoverflow.com/questions/39027429/npm-peer-dependency-check?noredirect=1&lq=1
 
 **************************/
 
@@ -134,3 +140,98 @@ this.setState((prevState, props) => {
 The second parameter is an optional callback function that will be executed once setState is completed and the component is re-rendered. Generally we recommend using componentDidUpdate() for such logic instead.
 
 ****************************/
+
+/***************************
+
+An element is a plain object describing a component instance or DOM node and its desired properties.
+It contains only information about the component type (for example, a Button), its properties (for example, its color),
+and any child elements inside it.
+An element is not an actual instance. Rather, it is a way to tell React what you want to see on the screen.
+You can’t call any methods on the element. It’s just an immutable description object with two fields:
+  type: (string | ReactClass) and
+  props: Object
+
+React elements are easy to traverse, don’t need to be parsed, and of course they are much lighter than the actual DOM
+elements—they’re just objects!
+
+The type of an element can also be a function or a class corresponding to a React component.
+
+This is the core idea of React.
+An element describing a component is also an element, just like an element describing the DOM node.
+They can be nested and mixed with each other.
+
+You can mix and match DOM and component elements in a single element tree.
+
+Finally, to create elements, use React.createElement(), JSX, or an element factory helper. Don’t write elements as plain objects in the real code—just know that they are plain objects under the hood.
+When a component receives some props as an input, it is because a particular parent component returned an element with its type and these props. This is why people say that the props flows one way in React: from parents to children.
+
+****************************/
+
+/********Router - Start ********/
+
+https://egghead.io/lessons/react-react-router-router-route-and-link
+https://github.com/ReactTraining/react-router/blob/master/docs/API.md#hashhistory
+
+The history the router should listen to. Typically browserHistory or hashHistory.
+
+import { browserHistory } from 'react-router'
+ReactDOM.render(<Router history={browserHistory} />, el)
+
+/********Router - Ends *******/
+
+/********Component declaration - starts *****/
+three ways to declare a component are mostly equivalent(can replace element object with JSX):
+
+// 1) As a function of props
+const Button = ({ children, color }) => ({
+  type: 'button',
+  props: {
+    className: 'button button-' + color,
+    children: {
+      type: 'b',
+      props: {
+        children: children
+      }
+    }
+  }
+});
+
+// 2) Using the React.createClass() factory
+const Button = React.createClass({
+  render() {
+    const { children, color } = this.props;
+    return {
+      type: 'button',
+      props: {
+        className: 'button button-' + color,
+        children: {
+          type: 'b',
+          props: {
+            children: children
+          }
+        }
+      }
+    };
+  }
+});
+
+// 3) As an ES6 class descending from React.Component
+class Button extends React.Component {
+  render() {
+    const { children, color } = this.props;
+    return {
+      type: 'button',
+      props: {
+        className: 'button button-' + color,
+        children: {
+          type: 'b',
+          props: {
+            children: children
+          }
+        }
+      }
+    };
+  }
+}
+
+/********Component declaration - Ends ***/
