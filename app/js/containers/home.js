@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, browserHistory } from 'react-router';
 import TestComponent from '../components/TestComponent';
 import LinkComponent from '../components/LinkComponent';
-import Page1Component from '../components/Page1Component';
+import HomeComponent from '../components/HomeComponent';
 import Page2Component from '../components/Page2Component';
 import Page3Component from '../components/Page3Component';
 
@@ -18,7 +18,7 @@ function initApp() {
   ReactDOM.render(
     (
       <Router history={browserHistory}>
-        <Route path="/" component={Page1Component}></Route>
+        <Route path="/" component={HomeComponent}></Route>
         <Route path="/page2" component={Page2Component}></Route>
         <Route path="/page3" component={Page3Component}></Route>
         <Route path="/page4/" component={page4Element}></Route>
